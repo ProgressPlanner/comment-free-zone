@@ -22,39 +22,52 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Disable comments and trackbacks in post types.
+ */
 class Disable_Comments {
 
-    /**
-     * Constructor.
-     */
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'disable_comments' ] );
 	}
 
-    /**
-     * Disable comments and trackbacks in post types.
-     */
+	/**
+	 * Disable comments and trackbacks in post types.
+	 */
 	public function disable_comments() {
-        add_action( 'admin_menu', function() {
-		    remove_submenu_page( 'options-general.php', 'options-discussion.php' ); // Comments settings
-		    remove_submenu_page( 'options-general.php', 'options-writing.php' ); // Post settings
-		}, 999 );
+		add_action(
+			'admin_menu',
+			function () {
+				remove_submenu_page( 'options-general.php', 'options-discussion.php' ); // Comments settings.
+				remove_submenu_page( 'options-general.php', 'options-writing.php' ); // Post settings.
+			},
+			999
+		);
 		add_filter( 'manage_pages_columns', [ $this, 'remove_comments_column_from_pages' ] );
 		add_filter( 'comments_open', '__return_false', 20, 2 );
 		add_filter( 'pings_open', '__return_false', 20, 2 );
 
-   		// Disable outgoing pings
-		add_action( 'pre_ping', function() {
-		    return [];
-		});
+		// Disable outgoing pings.
+		add_action(
+			'pre_ping',
+			function () {
+				return [];
+			}
+		);
 
-   		// Disable incoming pingbacks
-		add_filter( 'xmlrpc_methods', function( $methods ) {
-		    unset( $methods[ 'pingback.ping' ] );
-		    return $methods;
-		});
+		// Disable incoming pingbacks.
+		add_filter(
+			'xmlrpc_methods',
+			function ( $methods ) {
+				unset( $methods['pingback.ping'] );
+				return $methods;
+			}
+		);
 
-        // Disable support for comments and trackbacks in post types.
+		// Disable support for comments and trackbacks in post types.
 		$post_types = get_post_types();
 		foreach ( $post_types as $post_type ) {
 			if ( post_type_supports( $post_type, 'comments' ) ) {
@@ -64,16 +77,16 @@ class Disable_Comments {
 		}
 	}
 
-    /**
-     * Remove the Comments column from the Pages list table.
-     *
-     * @param array $columns The columns of the Pages list table.
-     * @return array The modified columns.
-     */
-    public function remove_comments_column_from_pages( $columns ) {
-	    unset( $columns[ 'comments' ] ); // Removes the Comments column.
+	/**
+	 * Remove the Comments column from the Pages list table.
+	 *
+	 * @param array $columns The columns of the Pages list table.
+	 * @return array The modified columns.
+	 */
+	public function remove_comments_column_from_pages( $columns ) {
+		unset( $columns['comments'] ); // Removes the Comments column.
 
-	    return $columns;
+		return $columns;
 	}
 }
 

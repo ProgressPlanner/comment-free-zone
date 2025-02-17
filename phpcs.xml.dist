@@ -98,7 +98,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="progress-planner"/>
+				<element value="disable-comments"/>
 			</property>
 		</properties>
 	</rule>
@@ -106,11 +106,15 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="Progress_Planner"/>
-				<element value="progress_planner"/>
-				<element value="prpl"/>
+				<element value="Disable_Comments"/>
+				<element value="disable_comments"/>
+				<element value="disablecomments"/>
 			</property>
 		</properties>
+	</rule>
+
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>/disable-comments\.php$</exclude-pattern>
 	</rule>
 
 	<rule ref="WordPress">
