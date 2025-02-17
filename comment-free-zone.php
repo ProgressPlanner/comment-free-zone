@@ -32,6 +32,7 @@ class Comment_Free_Zone {
 	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'disable_comments' ] );
+		add_action( 'admin_init', [ $this, 'disable_comments' ] );
 	}
 
 	/**
@@ -77,22 +78,33 @@ class Comment_Free_Zone {
 		add_filter( 'get_comments_number', '__return_zero' );
 
 		// Unregister the wp-block-comments block.
-		unregister_block_type( 'core/comment' );
-		unregister_block_type( 'core/comment-author-name' );
-		unregister_block_type( 'core/comment-content' );
-		unregister_block_type( 'core/comment-date' );
-		unregister_block_type( 'core/comment-edit-link' );
-		unregister_block_type( 'core/comment-reply-link' );
-		unregister_block_type( 'core/comment-template' );
-		unregister_block_type( 'core/comments-pagination' );
-		unregister_block_type( 'core/comments-pagination-next' );
-		unregister_block_type( 'core/comments-pagination-numbers' );
-		unregister_block_type( 'core/comments-pagination-previous' );
-		unregister_block_type( 'core/comments-title' );
-		unregister_block_type( 'core/comments' );
-		unregister_block_type( 'core/latest-comments' );
-		unregister_block_type( 'core/post-comments-form' );
-		
+		$comment_blocks = [
+			'comment',
+			'comment-author-name',
+			'comment-content',
+			'comment-date',
+			'comment-edit-link',
+			'comment-reply-link',
+			'comment-template',
+			'comments-pagination',
+			'comments-pagination-next',
+			'comments-pagination-numbers',
+			'comments-pagination-previous',
+			'comments-title',
+			'comments',
+			'latest-comments',
+			'post-comments-form',
+		];
+
+		foreach ( $comment_blocks as $block ) {
+			unregister_block_type( 'core/' . $block );
+			// Filter the output of the block to be empty.
+			add_filter(
+				'render_block_core/' . $block,
+				'__return_empty_string'
+			);
+		}
+
 		// Disable outgoing pings.
 		add_action(
 			'pre_ping',
