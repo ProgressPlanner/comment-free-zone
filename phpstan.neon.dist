@@ -2,5 +2,5 @@ parameters:
   level: 8
   reportUnmatchedIgnoredErrors: false
   paths:
-    - ./disable-comments.php
+    - ./comment-free-zone.php
   ignoreErrors:
