@@ -57,6 +57,13 @@ class Disable_Comments {
 		add_action( 'do_feed_rss', [ $this, 'disable_comment_feeds' ], 1 );
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 
+		// Disable comments on the frontend.
+		add_filter( 'comments_template', function() {
+			return dirname( __FILE__ ) . '/templates/blank.php';
+		}, 20 );
+		add_filter( 'comments_number', '__return_empty_string' );
+		add_filter( 'get_comments_number', '__return_zero' );
+
 		// Disable outgoing pings.
 		add_action(
 			'pre_ping',
