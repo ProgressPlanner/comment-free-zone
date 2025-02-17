@@ -1,4 +1,4 @@
-=== Disable Comments by Progress Planner ===
+=== Comment Free Zone ===
 Contributors: joostdevalk, aristath, mariekerakt, irisguelen, samalderson
 Tags: planning, maintenance, writing, blogging
 Requires at least: 6.3
