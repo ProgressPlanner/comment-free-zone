@@ -1,0 +1,6 @@
+parameters:
+  level: 8
+  reportUnmatchedIgnoredErrors: false
+  paths:
+    - ./comment-free-zone.php
+  ignoreErrors:
