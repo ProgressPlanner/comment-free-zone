@@ -2,9 +2,9 @@
 /**
  * A plugin to help you fight procrastination and get things done.
  *
- * @package Disable_Comments
+ * @package Comment_Free_Zone
  *
- * Plugin name:       Comment-free Zone
+ * Plugin name:       Comment-free zone
  * Plugin URI:        https://prpl.fyi/comment-free-zone
  * Description:       A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
  * Requires at least: 6.3
@@ -96,11 +96,12 @@ class Comment_Free_Zone {
 			'post-comments-form',
 		];
 
+		$registry = WP_Block_Type_Registry::get_instance();
 		foreach ( $comment_blocks as $block ) {
-			if ( ! block_exists( 'core/' . $block ) ) {
+			if ( ! $registry->get_registered( 'core/' . $block ) ) {
 				continue;
 			}
-			unregister_block_type( 'core/' . $block );
+			$registry->unregister( 'core/' . $block );
 			// Filter the output of the block to be empty.
 			add_filter(
 				'render_block_core/' . $block,
