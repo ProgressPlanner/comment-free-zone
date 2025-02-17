@@ -22,7 +22,6 @@ jobs:
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SLUG: pp-disable-comments
       # After the deploy, we also want to create a zip and upload it to the release on Github. We don't want
       # users to have to go to the repository to find our plugin :).
       - name: Upload release asset
