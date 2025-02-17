@@ -98,7 +98,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="disable-comments"/>
+				<element value="comment-free-zone"/>
 			</property>
 		</properties>
 	</rule>
@@ -106,15 +106,15 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="Disable_Comments"/>
-				<element value="disable_comments"/>
-				<element value="disablecomments"/>
+				<element value="Comment_Free_Zone"/>
+				<element value="comment_free_zone"/>
+				<element value="commentfreezone"/>
 			</property>
 		</properties>
 	</rule>
 
 	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
-		<exclude-pattern>/disable-comments\.php$</exclude-pattern>
+		<exclude-pattern>/comment-free-zone\.php$</exclude-pattern>
 	</rule>
 
 	<rule ref="WordPress">

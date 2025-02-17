@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Disable comments and trackbacks in post types.
  */
-class Disable_Comments {
+class Comment_Free_Zone {
 
 	/**
 	 * Constructor.
@@ -58,9 +58,13 @@ class Disable_Comments {
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 
 		// Disable comments on the frontend.
-		add_filter( 'comments_template', function() {
-			return dirname( __FILE__ ) . '/templates/blank.php';
-		}, 20 );
+		add_filter(
+			'comments_template',
+			function () {
+				return __DIR__ . '/templates/blank.php';
+			},
+			20
+		);
 		add_filter( 'comments_number', '__return_empty_string' );
 		add_filter( 'get_comments_number', '__return_zero' );
 
@@ -97,7 +101,7 @@ class Disable_Comments {
 	 * @return void
 	 */
 	public function disable_comment_feeds() {
-		if ( strpos( $_SERVER['REQUEST_URI'], 'comments' ) !== false ) {
+		if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ), 'comments' ) !== false ) {
 			wp_die( esc_html__( 'Comments are disabled.', 'comment-free-zone' ), '', [ 'response' => 403 ] );
 		}
 	}
@@ -116,4 +120,4 @@ class Disable_Comments {
 	}
 }
 
-new Disable_Comments();
+new Comment_Free_Zone();
