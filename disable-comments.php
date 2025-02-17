@@ -72,7 +72,9 @@ class Disable_Comments {
      */
     public function remove_comments_column_from_pages( $columns ) {
 	    unset( $columns[ 'comments' ] ); // Removes the Comments column.
-		
+
 	    return $columns;
 	}
 }
+
+new Disable_Comments();
