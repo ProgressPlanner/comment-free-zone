@@ -1,4 +1,4 @@
-# Disable Comments by Progress Planner
+# Comment Free Zone by Progress Planner
 
 A plugin to fully disable comments on your WordPress site.
 
