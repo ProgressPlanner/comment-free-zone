@@ -70,7 +70,15 @@ class Comment_Free_Zone {
 
 		// Unregister the wp-block-comments block.
 		unregister_block_type( 'core/comments' );
-		
+		unregister_block_type( 'core/comment' );
+		unregister_block_type( 'core/comment-author-name' );
+		unregister_block_type( 'core/comment-author-url' );
+		unregister_block_type( 'core/comment-author-email' );
+		unregister_block_type( 'core/comment-author-avatar' );
+		unregister_block_type( 'core/comment-content' );
+		unregister_block_type( 'core/comment-date' );
+		unregister_block_type( 'core/comment-edit-link' );
+
 		// Disable outgoing pings.
 		add_action(
 			'pre_ping',
