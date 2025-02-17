@@ -1,4 +1,4 @@
-=== Comment Free Zone ===
+=== Comment-free zone ===
 Contributors: joostdevalk, aristath, mariekerakt, irisguelen, samalderson
 Tags: planning, maintenance, writing, blogging
 Requires at least: 6.3
