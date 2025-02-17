@@ -1,0 +1,45 @@
+{
+	"name": "progressplanner/disable-comments",
+	"description": "A plugin to fully disable comments on your WordPress site.",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Team Progress Planner",
+			"email": "info@progressplanner.com"
+		}
+	],
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "*",
+		"php-parallel-lint/php-parallel-lint": "^1.3",
+		"yoast/wp-test-utils": "^1.2",
+		"phpstan/phpstan": "^2.0",
+		"szepeviktor/phpstan-wordpress": "^2.0",
+		"phpstan/extension-installer": "^1.4",
+		"yoast/yoastcs": "^3.0"
+	},
+	"scripts": {
+		"check-cs": [
+			"@php ./vendor/bin/phpcs -s"
+		],
+		"fix-cs": [
+			"@php ./vendor/bin/phpcbf"
+		],
+		"lint": [
+			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude node_modules --exclude .git"
+		],
+		"test": [
+			"@php ./vendor/phpunit/phpunit/phpunit --dont-report-useless-tests"
+		],
+		"phpstan": [
+			"@php ./vendor/bin/phpstan analyse --memory-limit=2048M"
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		}
+	}
+}
