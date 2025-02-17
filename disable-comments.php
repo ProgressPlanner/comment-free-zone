@@ -36,6 +36,8 @@ class Disable_Comments {
 
 	/**
 	 * Disable comments and trackbacks in post types.
+	 *
+	 * @return void
 	 */
 	public function disable_comments() {
 		add_action(
@@ -47,14 +49,14 @@ class Disable_Comments {
 			999
 		);
 		add_filter( 'manage_pages_columns', [ $this, 'remove_comments_column_from_pages' ] );
-		add_filter( 'comments_open', '__return_false', 20, 2 );
-		add_filter( 'pings_open', '__return_false', 20, 2 );
+		add_filter( 'comments_open', '__return_false', 20 );
+		add_filter( 'pings_open', '__return_false', 20 );
 
 		// Disable outgoing pings.
 		add_action(
 			'pre_ping',
-			function () {
-				return [];
+			function ( &$links ) {
+				$links = [];
 			}
 		);
 
@@ -80,8 +82,9 @@ class Disable_Comments {
 	/**
 	 * Remove the Comments column from the Pages list table.
 	 *
-	 * @param array $columns The columns of the Pages list table.
-	 * @return array The modified columns.
+	 * @param string[] $columns The columns of the Pages list table.
+	 *
+	 * @return string[] The modified columns.
 	 */
 	public function remove_comments_column_from_pages( $columns ) {
 		unset( $columns['comments'] ); // Removes the Comments column.
