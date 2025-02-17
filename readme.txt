@@ -8,7 +8,11 @@ Stable tag: 1.0.0
 License: GPL3+
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-A plugin to fully remove comments, trackbacks and all related features from your WordPress site.
+This plugin fully removes comments, trackbacks and all related features from your WordPress site.
+
+== Description ==
+
+This plugin fully removes comments, trackbacks and all related features from your WordPress site.
 
 This plugin will:
 
