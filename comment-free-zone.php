@@ -69,16 +69,22 @@ class Comment_Free_Zone {
 		add_filter( 'get_comments_number', '__return_zero' );
 
 		// Unregister the wp-block-comments block.
-		unregister_block_type( 'core/comments' );
 		unregister_block_type( 'core/comment' );
 		unregister_block_type( 'core/comment-author-name' );
-		unregister_block_type( 'core/comment-author-url' );
-		unregister_block_type( 'core/comment-author-email' );
-		unregister_block_type( 'core/comment-author-avatar' );
 		unregister_block_type( 'core/comment-content' );
 		unregister_block_type( 'core/comment-date' );
 		unregister_block_type( 'core/comment-edit-link' );
-
+		unregister_block_type( 'core/comment-reply-link' );
+		unregister_block_type( 'core/comment-template' );
+		unregister_block_type( 'core/comments-pagination' );
+		unregister_block_type( 'core/comments-pagination-next' );
+		unregister_block_type( 'core/comments-pagination-numbers' );
+		unregister_block_type( 'core/comments-pagination-previous' );
+		unregister_block_type( 'core/comments-title' );
+		unregister_block_type( 'core/comments' );
+		unregister_block_type( 'core/latest-comments' );
+		unregister_block_type( 'core/post-comments-form' );
+		
 		// Disable outgoing pings.
 		add_action(
 			'pre_ping',
