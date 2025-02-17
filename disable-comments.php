@@ -44,7 +44,7 @@ class Disable_Comments {
 			'admin_menu',
 			function () {
 				remove_submenu_page( 'options-general.php', 'options-discussion.php' ); // Comments settings.
-				remove_submenu_page( 'options-general.php', 'options-writing.php' ); // Post settings.
+				remove_menu_page( 'edit-comments.php' ); // Comments page.
 			},
 			999
 		);
