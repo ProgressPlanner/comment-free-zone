@@ -48,6 +48,14 @@ class Comment_Free_Zone {
 			},
 			999
 		);
+		add_action(
+			'admin_bar_menu',
+			function ( $wp_admin_bar ) {
+				$wp_admin_bar->remove_node( 'comments' );
+			},
+			999
+		);
+
 		add_filter( 'manage_pages_columns', [ $this, 'remove_comments_column_from_pages' ] );
 		add_filter( 'comments_open', '__return_false', 20 );
 		add_filter( 'pings_open', '__return_false', 20 );
