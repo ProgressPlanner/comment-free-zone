@@ -1,8 +1,8 @@
 {
-	"name": "progressplanner/disable-comments",
-	"description": "A plugin to fully disable comments on your WordPress site.",
+	"name": "progressplanner/comment-free-zone",
+	"description": "This plugin fully removes comments, trackbacks and all related features from your WordPress site.",
 	"type": "wordpress-plugin",
-	"license": "GPL-3.0-or-later",
+	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
 			"name": "Team Progress Planner",
@@ -27,9 +27,6 @@
 		],
 		"lint": [
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude node_modules --exclude .git"
-		],
-		"test": [
-			"@php ./vendor/phpunit/phpunit/phpunit --dont-report-useless-tests"
 		],
 		"phpstan": [
 			"@php ./vendor/bin/phpstan analyse --memory-limit=2048M"
