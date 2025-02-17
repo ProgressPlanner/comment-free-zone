@@ -4,9 +4,9 @@
  *
  * @package Disable_Comments
  *
- * Plugin name:       Disable Comments
- * Plugin URI:        https://prpl.fyi/disable-comments
- * Description:       A plugin to fully disable comments on your WordPress site.
+ * Plugin name:       Comment-free Zone
+ * Plugin URI:        https://prpl.fyi/comment-free-zone
+ * Description:       A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Version:           1.0.0
@@ -14,7 +14,7 @@
  * Author URI:        https://prpl.fyi/about
  * License:           GPL-3.0+
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       disable-comments
+ * Text Domain:       comment-free-zone
  */
 
 // Exit if accessed directly.
@@ -52,6 +52,11 @@ class Disable_Comments {
 		add_filter( 'comments_open', '__return_false', 20 );
 		add_filter( 'pings_open', '__return_false', 20 );
 
+		// Disable comment feeds.
+		add_action( 'do_feed_rss2', [ $this, 'disable_comment_feeds' ], 1 );
+		add_action( 'do_feed_rss', [ $this, 'disable_comment_feeds' ], 1 );
+		add_filter( 'feed_links_show_comments_feed', '__return_false' );
+
 		// Disable outgoing pings.
 		add_action(
 			'pre_ping',
@@ -76,6 +81,17 @@ class Disable_Comments {
 				remove_post_type_support( $post_type, 'comments' );
 				remove_post_type_support( $post_type, 'trackbacks' );
 			}
+		}
+	}
+
+	/**
+	 * Disable comment feeds.
+	 *
+	 * @return void
+	 */
+	public function disable_comment_feeds() {
+		if ( strpos( $_SERVER['REQUEST_URI'], 'comments' ) !== false ) {
+			wp_die( esc_html__( 'Comments are disabled.', 'comment-free-zone' ), '', [ 'response' => 403 ] );
 		}
 	}
 

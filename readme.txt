@@ -8,7 +8,7 @@ Stable tag: 1.0.5
 License: GPL3+
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-A plugin to fully disable comments on your WordPress site
+A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
 
 This plugin will:
 
