@@ -97,6 +97,9 @@ class Comment_Free_Zone {
 		];
 
 		foreach ( $comment_blocks as $block ) {
+			if ( ! block_exists( 'core/' . $block ) ) {
+				continue;
+			}
 			unregister_block_type( 'core/' . $block );
 			// Filter the output of the block to be empty.
 			add_filter(
