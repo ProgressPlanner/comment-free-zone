@@ -68,6 +68,9 @@ class Comment_Free_Zone {
 		add_filter( 'comments_number', '__return_empty_string' );
 		add_filter( 'get_comments_number', '__return_zero' );
 
+		// Unregister the wp-block-comments block.
+		unregister_block_type( 'core/comments' );
+		
 		// Disable outgoing pings.
 		add_action(
 			'pre_ping',
