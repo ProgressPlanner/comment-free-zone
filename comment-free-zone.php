@@ -163,7 +163,7 @@ class Comment_Free_Zone {
 		}
 		if ( isset( $response->data['ping_status'] ) ) {
 			unset( $response->data['ping_status'] );
-		}	
+		}
 		$response->remove_link( 'replies' );
 
 		return $response;
