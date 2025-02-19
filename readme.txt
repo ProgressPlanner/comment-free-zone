@@ -17,10 +17,10 @@ This plugin fully removes comments, trackbacks and all related features from you
 This plugin will:
 
 * In the admin:
-    * Remove the comments menu
-    * Remove the discussion settings page
-    * Remove the comments column from posts and pages
-    * Remove the comment section from the admin bar
+    * Removes the Comments menu item.
+    * Removes the Discussion settings page.
+    * Removes the comments column from posts and pages.
+    * Removes the comment section from the admin bar.
 * On the front-end:
     * Disable comments on all post types
     * Disable pingbacks and trackbacks

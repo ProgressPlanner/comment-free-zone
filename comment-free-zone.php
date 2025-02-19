@@ -57,6 +57,20 @@ class Comment_Free_Zone {
 			999
 		);
 
+		// Disable comments REST API endpoint.
+		add_filter(
+			'rest_endpoints',
+			function ( $endpoints ) {
+				if ( isset( $endpoints['/wp/v2/comments'] ) ) {
+					unset( $endpoints['/wp/v2/comments'] );
+				}
+				if ( isset( $endpoints['/wp/v2/comments/(?P<id>[\d]+)'] ) ) {
+					unset( $endpoints['/wp/v2/comments/(?P<id>[\d]+)'] );
+				}
+				return $endpoints;
+			}
+		);
+
 		add_filter( 'manage_pages_columns', [ $this, 'remove_comments_column_from_pages' ] );
 		add_filter( 'comments_open', '__return_false', 20 );
 		add_filter( 'pings_open', '__return_false', 20 );
@@ -103,10 +117,7 @@ class Comment_Free_Zone {
 			}
 			$registry->unregister( 'core/' . $block );
 			// Filter the output of the block to be empty.
-			add_filter(
-				'render_block_core/' . $block,
-				'__return_empty_string'
-			);
+			add_filter( 'render_block_core/' . $block, '__return_empty_string' );
 		}
 
 		// Disable outgoing pings.
@@ -133,7 +144,29 @@ class Comment_Free_Zone {
 				remove_post_type_support( $post_type, 'comments' );
 				remove_post_type_support( $post_type, 'trackbacks' );
 			}
+
+			// Remove comment_data from REST API responses.
+			add_filter( 'rest_prepare_' . $post_type, [ $this, 'cleanup_rest_prepare_post_type' ] );
 		}
+	}
+
+	/**
+	 * Cleanup the REST API response for a post type.
+	 *
+	 * @param WP_REST_Response $response The response object.
+	 *
+	 * @return WP_REST_Response The modified response object.
+	 */
+	public function cleanup_rest_prepare_post_type( $response ) {
+		if ( isset( $response->data['comment_status'] ) ) {
+			unset( $response->data['comment_status'] );
+		}
+		if ( isset( $response->data['ping_status'] ) ) {
+			unset( $response->data['ping_status'] );
+		}
+		$response->remove_link( 'replies' );
+
+		return $response;
 	}
 
 	/**
