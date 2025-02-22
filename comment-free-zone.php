@@ -80,6 +80,11 @@ class Comment_Free_Zone {
 		add_action( 'do_feed_rss', [ $this, 'disable_comment_feeds' ], 1 );
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 
+		// Disable default comment & ping status.
+		add_filter( 'get_default_comment_status', function() {
+			return 'closed';
+		}, 999 );
+
 		// Disable comments on the frontend.
 		add_filter(
 			'comments_template',
@@ -145,25 +150,34 @@ class Comment_Free_Zone {
 				remove_post_type_support( $post_type, 'trackbacks' );
 			}
 
-			// Remove comment_data from REST API responses.
+			add_filter( "rest_{$post_type}_item_schema", [ $this, 'cleanup_rest_api_schema' ] );
+
+			// Remove relpies link from REST API responses.
 			add_filter( 'rest_prepare_' . $post_type, [ $this, 'cleanup_rest_prepare_post_type' ] );
 		}
 	}
 
 	/**
-	 * Cleanup the REST API response for a post type.
+	 * Remove comment_status and ping_status from the REST API schema.
+	 *
+	 * @param array $schema The schema.
+	 *
+	 * @return array The modified schema.
+	 */
+	public function cleanup_rest_api_schema( $schema ) {
+		unset( $schema['properties']['comment_status'] );
+		unset( $schema['properties']['ping_status'] );
+		return $schema;
+	}
+
+	/**
+	 * Remove the replies link from the REST API response - should only be present for posts and pages normally, but runs for all post types.
 	 *
 	 * @param WP_REST_Response $response The response object.
 	 *
 	 * @return WP_REST_Response The modified response object.
 	 */
 	public function cleanup_rest_prepare_post_type( $response ) {
-		if ( isset( $response->data['comment_status'] ) ) {
-			unset( $response->data['comment_status'] );
-		}
-		if ( isset( $response->data['ping_status'] ) ) {
-			unset( $response->data['ping_status'] );
-		}
 		$response->remove_link( 'replies' );
 
 		return $response;
