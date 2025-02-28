@@ -1,5 +1,5 @@
 === Comment-free zone ===
-Contributors: joostdevalk, aristath, mariekerakt, irisguelen, samalderson
+Contributors: progressplanner, joostdevalk, aristath, mariekerakt, irisguelen, samalderson
 Tags: planning, maintenance, writing, blogging
 Requires at least: 6.3
 Tested up to: 6.7
