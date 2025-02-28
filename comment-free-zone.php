@@ -81,9 +81,13 @@ class Comment_Free_Zone {
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 
 		// Disable default comment & ping status.
-		add_filter( 'get_default_comment_status', function() {
-			return 'closed';
-		}, 999 );
+		add_filter(
+			'get_default_comment_status',
+			function () {
+				return 'closed';
+			},
+			999
+		);
 
 		// Disable comments on the frontend.
 		add_filter(
@@ -160,9 +164,9 @@ class Comment_Free_Zone {
 	/**
 	 * Remove comment_status and ping_status from the REST API schema.
 	 *
-	 * @param array $schema The schema.
+	 * @param string[][] $schema The schema.
 	 *
-	 * @return array The modified schema.
+	 * @return string[][] The modified schema.
 	 */
 	public function cleanup_rest_api_schema( $schema ) {
 		unset( $schema['properties']['comment_status'] );
