@@ -5,7 +5,7 @@
  * @package Comment_Free_Zone
  *
  * Plugin name:       Comment-free zone
- * Plugin URI:        https://prpl.fyi/comment-free-zone
+ * Plugin URI:        https://progressplanner.com/plugins/comment-free-zone/#utm_medium=readme&utm_source=w.org&utm_campaign=comment-free-zone
  * Description:       A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
  * Requires at least: 6.3
  * Requires PHP:      7.4
@@ -57,6 +57,20 @@ class Comment_Free_Zone {
 			999
 		);
 
+		// Disable comments REST API endpoint.
+		add_filter(
+			'rest_endpoints',
+			function ( $endpoints ) {
+				if ( isset( $endpoints['/wp/v2/comments'] ) ) {
+					unset( $endpoints['/wp/v2/comments'] );
+				}
+				if ( isset( $endpoints['/wp/v2/comments/(?P<id>[\d]+)'] ) ) {
+					unset( $endpoints['/wp/v2/comments/(?P<id>[\d]+)'] );
+				}
+				return $endpoints;
+			}
+		);
+
 		add_filter( 'manage_pages_columns', [ $this, 'remove_comments_column_from_pages' ] );
 		add_filter( 'comments_open', '__return_false', 20 );
 		add_filter( 'pings_open', '__return_false', 20 );
@@ -65,6 +79,15 @@ class Comment_Free_Zone {
 		add_action( 'do_feed_rss2', [ $this, 'disable_comment_feeds' ], 1 );
 		add_action( 'do_feed_rss', [ $this, 'disable_comment_feeds' ], 1 );
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
+
+		// Disable default comment & ping status.
+		add_filter(
+			'get_default_comment_status',
+			function () {
+				return 'closed';
+			},
+			999
+		);
 
 		// Disable comments on the frontend.
 		add_filter(
@@ -103,10 +126,7 @@ class Comment_Free_Zone {
 			}
 			$registry->unregister( 'core/' . $block );
 			// Filter the output of the block to be empty.
-			add_filter(
-				'render_block_core/' . $block,
-				'__return_empty_string'
-			);
+			add_filter( 'render_block_core/' . $block, '__return_empty_string' );
 		}
 
 		// Disable outgoing pings.
@@ -133,7 +153,38 @@ class Comment_Free_Zone {
 				remove_post_type_support( $post_type, 'comments' );
 				remove_post_type_support( $post_type, 'trackbacks' );
 			}
+
+			add_filter( "rest_{$post_type}_item_schema", [ $this, 'cleanup_rest_api_schema' ] );
+
+			// Remove relpies link from REST API responses.
+			add_filter( 'rest_prepare_' . $post_type, [ $this, 'cleanup_rest_prepare_post_type' ] );
 		}
+	}
+
+	/**
+	 * Remove comment_status and ping_status from the REST API schema.
+	 *
+	 * @param string[][] $schema The schema.
+	 *
+	 * @return string[][] The modified schema.
+	 */
+	public function cleanup_rest_api_schema( $schema ) {
+		unset( $schema['properties']['comment_status'] );
+		unset( $schema['properties']['ping_status'] );
+		return $schema;
+	}
+
+	/**
+	 * Remove the replies link from the REST API response - should only be present for posts and pages normally, but runs for all post types.
+	 *
+	 * @param WP_REST_Response $response The response object.
+	 *
+	 * @return WP_REST_Response The modified response object.
+	 */
+	public function cleanup_rest_prepare_post_type( $response ) {
+		$response->remove_link( 'replies' );
+
+		return $response;
 	}
 
 	/**
