@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-You can report any security bugs found in the source code of this plugin through our [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/pp-disable-comments). The Patchstack team will assist you with verification, CVE assignment and take care of notifying the developers of this plugin.
+You can report any security bugs found in the source code of this plugin through our [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/comment-free-zone). The Patchstack team will assist you with verification, CVE assignment and take care of notifying the developers of this plugin.
 
 ## Responding to Vulnerability Reports
 
