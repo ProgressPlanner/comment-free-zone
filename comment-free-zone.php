@@ -1,10 +1,10 @@
 <?php
 /**
- * A plugin to help you fight procrastination and get things done.
+ * A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
  *
  * @package Comment_Free_Zone
  *
- * Plugin name:       Comment-free zone
+ * Plugin name:       Comment-free zone by Progress Planner
  * Plugin URI:        https://progressplanner.com/plugins/comment-free-zone/#utm_medium=readme&utm_source=w.org&utm_campaign=comment-free-zone
  * Description:       A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
  * Requires at least: 6.3
