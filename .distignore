@@ -1,13 +1,13 @@
-/.wordpress-org
 /.git
 /.github
+/.wordpress-org
 /coverage
 /tests
 /vendor
 .distignore
 .editorconfig
-.gitignore
 .gitattributes
+.gitignore
 composer.json
 composer.lock
 package.json
@@ -16,3 +16,4 @@ phpcs.xml.dist
 phpstan.neon.dist
 phpunit.xml.dist
 README.md
+SECURITY.md
