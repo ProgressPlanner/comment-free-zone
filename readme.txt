@@ -4,7 +4,7 @@ Tags: planning, maintenance, writing, blogging
 Requires at least: 6.3
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL3+
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -49,6 +49,10 @@ If you've found a bug, please follow the following steps:
 4. You're done.
 
 == Changelog ==
+
+= 1.0.1 =
+
+* Updated “Tested up to” WordPress version.
 
 = 1.0 =
 
