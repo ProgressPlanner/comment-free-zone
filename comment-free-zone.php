@@ -9,7 +9,7 @@
  * Description:       A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
  * Requires at least: 6.3
  * Requires PHP:      7.4
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Team Progress Planner
  * Author URI:        https://prpl.fyi/about
  * License:           GPL-3.0+
