@@ -7,7 +7,7 @@
  * Plugin name:       Comment-free zone by Progress Planner
  * Plugin URI:        https://progressplanner.com/plugins/comment-free-zone/#utm_medium=readme&utm_source=w.org&utm_campaign=comment-free-zone
  * Description:       A plugin to fully disable comments, trackbacks and all related features on your WordPress site.
- * Requires at least: 6.3
+ * Requires at least: 6.7
  * Requires PHP:      7.4
  * Version:           1.0.1
  * Author:            Team Progress Planner
