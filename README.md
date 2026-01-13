@@ -6,7 +6,7 @@
 
 ![Comment Free Zone](/.wordpress-org/github_banner_cfz_pp.png)
 
-# Comment Free Zone by Progress Planner
+# Comment Free Zone
 
 A plugin to fully remove comments, trackbacks and all related features from your WordPress site.
 
