@@ -1,10 +1,10 @@
-=== Comment-free zone by Progress Planner ===
+=== Comment-free zone ===
 Contributors: progressplanner, joostdevalk, aristath, mariekerakt, irisguelen, samalderson
 Tags: planning, maintenance, writing, blogging
-Requires at least: 6.3
-Tested up to: 6.8
+Requires at least: 6.7
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPL3+
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -49,6 +49,10 @@ If you've found a bug, please follow the following steps:
 4. You're done.
 
 == Changelog ==
+
+= 1.0.2 =
+
+* Minor (name) changes.
 
 = 1.0.1 =
 

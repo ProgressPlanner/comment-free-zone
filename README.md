@@ -4,7 +4,9 @@
 
 [![Try Comment Free Zone on the WordPress playground](https://img.shields.io/badge/Try%20Comment%20Free%20Zone%20on%20the%20WordPress%20Playground-%23117AC9.svg?style=for-the-badge&logo=WordPress&logoColor=ddd)](https://playground.wordpress.net/#{"landingPage":"/wp-admin/","features":{"networking":true},"login":true,"plugins":["https://github-proxy.com/proxy/?repo=ProgressPlanner/comment-free-zone"],"steps":[{"step":"defineWpConfigConsts","consts":{"IS_PLAYGROUND_PREVIEW":true}}]})
 
-# Comment Free Zone by Progress Planner
+![Comment Free Zone](/.wordpress-org/github_banner_cfz_pp.png)
+
+# Comment Free Zone
 
 A plugin to fully remove comments, trackbacks and all related features from your WordPress site.
 
