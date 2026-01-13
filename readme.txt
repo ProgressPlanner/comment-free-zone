@@ -1,4 +1,4 @@
-=== Comment-free zone by Progress Planner ===
+=== Comment-free zone ===
 Contributors: progressplanner, joostdevalk, aristath, mariekerakt, irisguelen, samalderson
 Tags: planning, maintenance, writing, blogging
 Requires at least: 6.7
