@@ -7,5 +7,9 @@
  * This template is used to display a blank comments page when comments are disabled.
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 ?>
 <!-- <?php esc_html_e( 'Comments have been disabled.', 'comment-free-zone' ); ?> -->
