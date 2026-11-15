@@ -2,6 +2,9 @@ name: 'WordPress.org Plugin Check'
 on: # rebuild any PRs and main branch changes
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest

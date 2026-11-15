@@ -33,6 +33,8 @@ class Comment_Free_Zone {
 	public function __construct() {
 		add_action( 'init', [ $this, 'disable_comments' ] );
 		add_action( 'admin_init', [ $this, 'disable_comments' ] );
+		// Core fires widgets_init on init priority 1, so this cannot be hooked from disable_comments().
+		add_action( 'widgets_init', [ $this, 'unregister_widgets' ] );
 	}
 
 	/**
@@ -77,7 +79,7 @@ class Comment_Free_Zone {
 
 		// Disable comment feeds.
 		add_action( 'do_feed_rss2', [ $this, 'disable_comment_feeds' ], 1 );
-		add_action( 'do_feed_rss', [ $this, 'disable_comment_feeds' ], 1 );
+		add_action( 'do_feed_atom', [ $this, 'disable_comment_feeds' ], 1 );
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 
 		// Disable default comment & ping status.
@@ -137,11 +139,12 @@ class Comment_Free_Zone {
 			}
 		);
 
-		// Disable incoming pingbacks.
+		// Disable incoming pingbacks and the listing of existing pingbacks.
 		add_filter(
 			'xmlrpc_methods',
 			function ( $methods ) {
 				unset( $methods['pingback.ping'] );
+				unset( $methods['pingback.extensions.getPingbacks'] );
 				return $methods;
 			}
 		);
@@ -190,12 +193,27 @@ class Comment_Free_Zone {
 	/**
 	 * Disable comment feeds.
 	 *
+	 * Core passes whether the requested feed is a comment feed as the first argument
+	 * of the `do_feed_rss2` and `do_feed_atom` actions. That covers the site-wide
+	 * comment feeds as well as the per-post ones, regardless of what the URL looks like.
+	 *
+	 * @param bool $is_comment_feed Whether the feed is a comment feed.
+	 *
 	 * @return void
 	 */
-	public function disable_comment_feeds() {
-		if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ), 'comments' ) !== false ) {
+	public function disable_comment_feeds( $is_comment_feed = false ) {
+		if ( $is_comment_feed ) {
 			wp_die( esc_html__( 'Comments are disabled.', 'comment-free-zone' ), '', [ 'response' => 403 ] );
 		}
+	}
+
+	/**
+	 * Unregister the classic Recent Comments widget.
+	 *
+	 * @return void
+	 */
+	public function unregister_widgets() {
+		unregister_widget( 'WP_Widget_Recent_Comments' );
 	}
 
 	/**
