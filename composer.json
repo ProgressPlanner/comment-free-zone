@@ -16,7 +16,8 @@
 		"phpstan/phpstan": "^2.0",
 		"szepeviktor/phpstan-wordpress": "^2.0",
 		"phpstan/extension-installer": "^1.4",
-		"yoast/yoastcs": "^3.0"
+		"yoast/yoastcs": "^3.0",
+		"yoast/wp-test-utils": "^1.2"
 	},
 	"scripts": {
 		"check-cs": [
@@ -28,6 +29,9 @@
 		"lint": [
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude node_modules --exclude .git"
 		],
+		"test": [
+			"@php ./vendor/phpunit/phpunit/phpunit"
+		],
 		"phpstan": [
 			"@php ./vendor/bin/phpstan analyse --memory-limit=2048M"
 		]
@@ -36,6 +40,9 @@
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"phpstan/extension-installer": true
+		},
+		"platform": {
+			"php": "7.4.33"
 		}
 	}
 }
