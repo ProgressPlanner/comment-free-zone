@@ -239,12 +239,12 @@ class Comment_Free_Zone_Test extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Comment blocks already in content render as nothing.
+	 * Comment blocks already in content render as nothing, inner content included.
 	 *
 	 * @return void
 	 */
 	public function test_comment_blocks_render_empty() {
-		$this->assertSame( '', trim( do_blocks( '<!-- wp:latest-comments /-->' ) ) );
+		$this->assertSame( '', trim( do_blocks( '<!-- wp:comments --><div class="wp-block-comments">Comments</div><!-- /wp:comments -->' ) ) );
 	}
 
 	/**
