@@ -1,8 +1,8 @@
-=== Comment Free Zone ===
+=== Comment-free zone ===
 Contributors: progressplanner, joostdevalk, aristath, mariekerakt, irisguelen, samalderson
 Tags: disable comments, comments, trackbacks, pingbacks, moderation
 Requires at least: 6.7
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.0.2
 License: GPL-3.0+
@@ -72,10 +72,6 @@ No. This is a no-settings plugin. Activate it and the plugin applies its changes
 If you've found a bug, please search the open issues on [GitHub](https://github.com/ProgressPlanner/comment-free-zone/issues/) first and open a new issue if needed.
 
 If it's a security issue, please report it through our [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/comment-free-zone).
-
-== Screenshots ==
-
-<!-- TODO: Add plugin screenshots and keyword-rich captions for the WordPress.org listing. -->
 
 == Changelog ==
 
