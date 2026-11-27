@@ -2,7 +2,7 @@
 Contributors: progressplanner, joostdevalk, aristath, mariekerakt, irisguelen, samalderson
 Tags: disable comments, comments, trackbacks, pingbacks, moderation
 Requires at least: 6.7
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
 Stable tag: 1.0.2
 License: GPL-3.0+
